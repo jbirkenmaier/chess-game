@@ -39,7 +39,6 @@ class piece():
                             [coordinate_x+1,coordinate_y+1],
                             [coordinate_x-1,coordinate_y+1]
                             ]
-            #list_of_powers=[element for element in list_of_powers if 
 
         if name == 'r':
             list_of_powers=[]
