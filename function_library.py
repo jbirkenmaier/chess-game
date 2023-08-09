@@ -12,7 +12,6 @@ class piece():
     def powers(self, name, position):
         coordinate_x = int(position[0])
         coordinate_y = int(position[1])
-        list_of_powers =[]
         if name == 'n': #knight
             list_of_powers=[[coordinate_x+2,coordinate_y+1],
                             [coordinate_x+2,coordinate_y-1],
@@ -23,7 +22,15 @@ class piece():
                             [coordinate_x-1,coordinate_y-2],
                             [coordinate_x+1,coordinate_y-2]
                             ]
-            return list_of_powers
+        if name == 'p': #pawn
+            print('CALL')
+            list_of_powers=[[coordinate_x,coordinate_y+1],
+                            [coordinate_x+1,coordinate_y+1],
+                            [coordinate_x-1,coordinate_y+1]
+                            ]
+
+        return list_of_powers
+
 
             
 
