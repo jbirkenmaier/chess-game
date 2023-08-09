@@ -7,6 +7,7 @@ class piece():
         self.position=self.translate_position(position)
         self.position_user=self.retranslate_position(self.position)
         self.capability = self.check_if_allowed(self.powers(self.name, self.position))
+        self.num_of_possible_moves
 
     def powers(self, name, position):
         coordinate_x = int(position[0])
@@ -35,7 +36,9 @@ class piece():
         return '%s%s'%(self.characters[int(position[0])],self.numbers[int(position[1])])
 
     def check_if_allowed(self, list_target_positions):
-        legal_target_positions = ['%i,%i'%(element[0],[element[1]) for element in list_target_positions if (int(element[0])>=0 and int(element[1]) >=0) and (int(element[0])<=7 and int(element[1]) <=7)] 
+        legal_target_positions = [element for element in list_target_positions if (int(element[0])>=0 and int(element[1]) >=0) and (int(element[0])<=7 and int(element[1]) <=7)]
+        legal_target_positions = ['%i%i'%(element[0],element[1]) for element in legal_target_positions]
+        self.num_of_possible_moves = len(legal_target_positions)
         return legal_target_positions
             
             
