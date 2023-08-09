@@ -6,22 +6,23 @@ class piece():
         self.name=name
         self.position=self.translate_position(position)
         self.position_user=self.retranslate_position(self.position)
-        self.capability = self.powers(self.name, self.position)
+        self.capability = self.check_if_allowed(self.powers(self.name, self.position))
 
     def powers(self, name, position):
         coordinate_x = int(position[0])
         coordinate_y = int(position[1])
         list_of_powers =[]
         if name == 'n': #knight
-            list_of_powers.append([coordinate_x+2,coordinate_y+1],
-                                  [coordinate_x+2,coordinate_y-1],
-                                  [coordinate_x-2,coordinate_y+1],
-                                  [coordinate_x-2,coordinate_y-1],
-                                  [coordinate_x-1,coordinate_y+2],
-                                  [coordinate_x+1,coordinate_y+2],
-                                  [coordinate_x-1,coordinate_y-2],
-                                  [coordinate_x+1,coordinate_y-2]
-                                  )
+            list_of_powers=[[coordinate_x+2,coordinate_y+1],
+                            [coordinate_x+2,coordinate_y-1],
+                            [coordinate_x-2,coordinate_y+1],
+                            [coordinate_x-2,coordinate_y-1],
+                            [coordinate_x-1,coordinate_y+2],
+                            [coordinate_x+1,coordinate_y+2],
+                            [coordinate_x-1,coordinate_y-2],
+                            [coordinate_x+1,coordinate_y-2]
+                            ]
+            return list_of_powers
 
             
 
@@ -33,6 +34,9 @@ class piece():
     def retranslate_position(self, position):
         return '%s%s'%(self.characters[int(position[0])],self.numbers[int(position[1])])
 
-    def check_if_allowed(self, 
-                
+    def check_if_allowed(self, list_target_positions):
+        print(list_target_positions)
+        legal_target_positions = [element for element in list_target_positions if (element[0] and element[1]) >=0 and (element[0] and element[1])<=7] 
+        return legal_target_positions
+            
             
