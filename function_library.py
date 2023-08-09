@@ -23,7 +23,6 @@ class piece():
                             [coordinate_x+1,coordinate_y-2]
                             ]
         if name == 'p': #pawn
-            print('CALL')
             list_of_powers=[[coordinate_x,coordinate_y+1],
                             [coordinate_x+1,coordinate_y+1],
                             [coordinate_x-1,coordinate_y+1]
@@ -49,3 +48,5 @@ class piece():
         return legal_target_positions
             
             
+def possible_moves(piece):
+    return [piece.retranslate_position(piece.capability[i]) for i in range(piece.num_of_possible_moves)]
