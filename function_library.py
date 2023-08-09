@@ -99,8 +99,15 @@ class piece():
                 list_of_powers.append(element)
                 
         if name == 'k':
-            list_of_powers=[]
-        
+            list_of_powers=[[coordinate_x,coordinate_y+1], 
+                            [coordinate_x+1,coordinate_y+1],
+                            [coordinate_x-1,coordinate_y+1],
+                            [coordinate_x+1,coordinate_y],
+                            [coordinate_x-1,coordinate_y],
+                            [coordinate_x-1,coordinate_y-1],
+                            [coordinate_x,coordinate_y-1],
+                            [coordinate_x+1,coordinate_y-1]
+                            ]
         return list_of_powers
 
 
