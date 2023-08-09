@@ -18,13 +18,10 @@ move_options = fl.possible_moves(pawn)
 
 print(move_options)
 print(len(move_options))
-'''
-for j in range(6):
-    for i in range(8):
-        print('o', end='\r')
-    print('\noooooooo')
-'''
-print('■□■□■□■□\n□■□■□■□■\n■□■□■□■□\n□■□■□■□■\n■□■□■□■□\n□■□■□■□■\n■□■□■□■□\n□■□■□■□■')
+
+
+print('⬛⬜⬛⬜⬛⬜⬛⬜\n⬜⬛⬜⬛⬜⬛⬜⬛\n⬛⬜⬛⬜⬛⬜⬛⬜\n⬜⬛⬜⬛⬜⬛⬜⬛\n⬛⬜⬛⬜⬛⬜⬛⬜\n⬜⬛⬜⬛⬜⬛⬜⬛\n⬛⬜⬛⬜⬛⬜⬛⬜\n⬜⬛⬜⬛⬜⬛⬜⬛')
+input()
 
 '''
 white:
@@ -41,15 +38,4 @@ black
 ♝
 ♞
 ♟︎
-print('♖')
-
-print(■□■□■□■□\n
-■□■□■□■□
-■□■□■□■□
-■□■□■□■□
-■□■□■□■□
-■□■□■□■□
-■□■□■□■□
-■□■□■□■□)
-
 '''
