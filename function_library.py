@@ -6,7 +6,9 @@ piece_starting_positions =['a1','b1','c1','d1','e1','f1','g1','h1','a2','b2','c2
 
 
 def setup():
-    pieces = [piece(element
+    initialize_pieces = [piece(piece_shorts[i][0],piece_starting_positions[i],piece_shorts[i][1]) for i in range(len(piece_starting_positions))]
+    return initialize_pieces
+
 class piece():
 
     def __init__(self, name, position, color):
@@ -40,13 +42,13 @@ class piece():
             #list_of_powers=[element for element in list_of_powers if 
 
         if name == 'r':
-            pass
+            list_of_powers=[]
         if name == 'b':
-            pass
+            list_of_powers=[]
         if name == 'q':
-            pass
+            list_of_powers=[]
         if name == 'k':
-            pass                            
+            list_of_powers=[]
         
         return list_of_powers
 

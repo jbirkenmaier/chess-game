@@ -1,8 +1,14 @@
 import function_library as fl
 
 
-knight = fl.piece('n','f7','white')
-pawn = fl.piece('p','d6','black')
+starting_position = fl.setup()
+
+print(starting_position[0].name)
+print(starting_position[0].color)
+
+
+knight = fl.piece('n','f7','w')
+pawn = fl.piece('p','d6','b')
 
 print(pawn.position)
 print(pawn.position_user)
