@@ -8,7 +8,7 @@ import function_library as fl
 
 
 #knight = fl.piece('n','f7','w')
-pawn = fl.piece('r','d6','b')
+pawn = fl.piece('b','d6','b')
 
 print(pawn.position)
 print(pawn.position_user)

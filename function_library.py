@@ -58,6 +58,19 @@ class piece():
 
         if name == 'b':
             list_of_powers=[]
+            upper_right=[[coordinate_x+i, coordinate_y+i] for i in range(1,8-coordinate_x)]
+            upper_left=[[coordinate_x-i, coordinate_y+i] for i in range(1,8-coordinate_x)]
+            lower_right=[[coordinate_x+i, coordinate_y-i] for i in range(1,8-coordinate_x)]
+            lower_left=[[coordinate_x-i, coordinate_y-i] for i in range(1,8-coordinate_x)]
+            for element in upper_right:
+                list_of_powers.append(element)
+            for element in upper_left:
+                list_of_powers.append(element)
+            for element in lower_right:
+                list_of_powers.append(element)
+            for element in lower_left:
+                list_of_powers.append(element)
+                
         if name == 'q':
             list_of_powers=[]
         if name == 'k':
