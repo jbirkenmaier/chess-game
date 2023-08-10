@@ -22,6 +22,7 @@ class piece():
         self.position_user=self.retranslate_position(self.position)
         self.capability = self.check_if_allowed(self.powers(self.name, self.position))
         self.num_of_possible_moves
+        self.character
 
     def powers(self, name, position):
         coordinate_x = int(position[0])
@@ -36,11 +37,20 @@ class piece():
                             [coordinate_x-1,coordinate_y-2],
                             [coordinate_x+1,coordinate_y-2]
                             ]
+            if self.color == 'w':
+                self.character = '♘'
+            if self.color == 'b':
+                self.character = '♞'
+                
         if name == 'p': #pawn
             list_of_powers=[[coordinate_x,coordinate_y+1],
                             [coordinate_x+1,coordinate_y+1],
                             [coordinate_x-1,coordinate_y+1]
                             ]
+            if self.color == 'w':
+                self.character = '♙'
+            if self.color == 'b':
+                self.character = '♟'
 
         if name == 'r':
             list_of_powers=[]
@@ -57,6 +67,11 @@ class piece():
             for element in down:
                 list_of_powers.append(element)
 
+            if self.color == 'w':
+                self.character = '♖'
+            if self.color == 'b':
+                self.character = '♜'
+
         if name == 'b':
             list_of_powers=[]
             upper_right=[[coordinate_x+i, coordinate_y+i] for i in range(1,8-coordinate_x)]
@@ -71,6 +86,11 @@ class piece():
                 list_of_powers.append(element)
             for element in lower_left:
                 list_of_powers.append(element)
+
+            if self.color == 'w':
+                self.character = '♗'
+            if self.color == 'b':
+                self.character = '♝'
                 
         if name == 'q':
             list_of_powers=[]
@@ -98,6 +118,11 @@ class piece():
                 list_of_powers.append(element)
             for element in lower_left:
                 list_of_powers.append(element)
+
+            if self.color == 'w':
+                self.character = '♕'
+            if self.color == 'b':
+                self.character = '♛'
                 
         if name == 'k':
             list_of_powers=[[coordinate_x,coordinate_y+1], 
@@ -109,6 +134,11 @@ class piece():
                             [coordinate_x,coordinate_y-1],
                             [coordinate_x+1,coordinate_y-1]
                             ]
+            if self.color == 'w':
+                self.character = '♔'
+            if self.color == 'b':
+                self.character = '♚'
+                
         return list_of_powers
 
 
@@ -132,10 +162,11 @@ class piece():
 def possible_moves(piece):
     return [piece.retranslate_position(piece.capability[i]) for i in range(piece.num_of_possible_moves)]
 
-def create_board(first_color,second_color,third_color,piece_color, piece_size, square_size):
+def create_board(first_color,second_color,third_color,piece_color, piece_size, square_size, current_position):
     fig,ax = plt.subplots()
-    
-    ax.text(2.5, 2.5, '♚', fontsize=piece_size, color=piece_color)
+
+    for element in current_position:
+        ax.text(float(element.position[0])*square_size, float(element.position[1])*20,element.character, fontsize=piece_size, color=piece_color)
 
     for j in range(0,8):
         if j%2 ==0:

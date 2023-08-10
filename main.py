@@ -19,7 +19,7 @@ move_options = fl.possible_moves(pawn)
 print(move_options)
 print(len(move_options))
 
-fl.create_board('purple','white','purple','black',40,20)
+fl.create_board('purple','white','purple','black',40,20, current_position)
 
 
 
