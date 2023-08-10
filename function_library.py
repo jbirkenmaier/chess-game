@@ -5,7 +5,8 @@ piece_shorts = ['rw','nw','bw','qw','kw','bw','nw','rw','pw','pw','pw','pw','pw'
 
 piece_starting_positions =['a1','b1','c1','d1','e1','f1','g1','h1','a2','b2','c2','d2','e2','f2','g2','h2','a8','b8','c8','d8','e8','f8','g8','h8','a7','b7','c7','d7','e7','f7','g7','h7']
 
-
+chars = ['a','b','c','d','e','f','g','h']
+nums = ['1','2','3','4','5','6','7','8']
 
 def setup():
     initialize_pieces = [piece(piece_shorts[i][0],piece_starting_positions[i],piece_shorts[i][1]) for i in range(len(piece_starting_positions))]
@@ -144,12 +145,12 @@ class piece():
 
             
 
-    def translate_position(self, position):
+    def translate_position(self, position): #translate from user input
         for count, letter in enumerate(self.characters):
             if letter == position[0]:
                 return '%s%s'%(count,str(int(position[1])-1))
 
-    def retranslate_position(self, position):
+    def retranslate_position(self, position): #translate from machine output
         return '%s%s'%(self.characters[int(position[0])],self.numbers[int(position[1])])
 
     def check_if_allowed(self, list_target_positions):
@@ -157,7 +158,15 @@ class piece():
         legal_target_positions = ['%i%i'%(element[0],element[1]) for element in legal_target_positions]
         self.num_of_possible_moves = len(legal_target_positions)
         return legal_target_positions
-            
+
+
+def user_to_machine_translation(position): #translate from user input
+    for count, letter in enumerate(chars):
+        if letter == position[0]:
+            return '%s%s'%(count,str(int(position[1])-1))
+
+def machine_to_user_translation(position): #translate from machine output
+    return '%s%s'%(chars[int(position[0])],nums[int(position[1])])           
             
 def possible_moves(piece):
     return [piece.retranslate_position(piece.capability[i]) for i in range(piece.num_of_possible_moves)]
