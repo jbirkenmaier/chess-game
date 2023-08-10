@@ -1,3 +1,5 @@
+import matplotlib.pyplot as plt
+
 
 piece_shorts = ['rw','nw','bw','qw','kw','bw','nw','rw','pw','pw','pw','pw','pw','pw','pw','pw','rb','nb','bb','qb','kb','bb','nb','rb','pb','pb','pb','pb','pb','pb','pb','pb']
 
@@ -129,3 +131,26 @@ class piece():
             
 def possible_moves(piece):
     return [piece.retranslate_position(piece.capability[i]) for i in range(piece.num_of_possible_moves)]
+
+def create_board(first_color,second_color,third_color,piece_color, piece_size, square_size):
+    fig,ax = plt.subplots()
+    
+    ax.text(2.5, 2.5, '♚', fontsize=piece_size, color=piece_color)
+
+    for j in range(0,8):
+        if j%2 ==0:
+            for i in range(0,8,2):
+                rectangle = plt.Rectangle((square_size*i,j*square_size), square_size, square_size, fc=first_color)
+                plt.gca().add_patch(rectangle)
+                rectangle = plt.Rectangle((square_size*i+square_size,j*square_size), square_size, square_size, fc=second_color,ec=third_color)
+                plt.gca().add_patch(rectangle)
+        else:
+            for i in range(0,8,2):
+                rectangle = plt.Rectangle((square_size*i+square_size,j*square_size), square_size, square_size, fc=first_color)
+                plt.gca().add_patch(rectangle)
+                rectangle = plt.Rectangle((square_size*i,j*square_size), square_size, square_size, fc=second_color,ec=third_color)
+                plt.gca().add_patch(rectangle)
+            
+    plt.axis('scaled')
+    plt.show()
+    
