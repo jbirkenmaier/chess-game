@@ -1,5 +1,21 @@
 import matplotlib.pyplot as plt
 
+'''
+white:
+♔
+♕
+♖
+♗
+♘
+♙
+black
+♚
+♛
+♜
+♝
+♞
+♟︎
+'''
 
 piece_shorts = ['rw','nw','bw','qw','kw','bw','nw','rw','pw','pw','pw','pw','pw','pw','pw','pw','rb','nb','bb','qb','kb','bb','nb','rb','pb','pb','pb','pb','pb','pb','pb','pb']
 
