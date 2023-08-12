@@ -1,3 +1,5 @@
+import matplotlib
+matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 
 '''
@@ -188,10 +190,11 @@ def possible_moves(piece):
     return [piece.retranslate_position(piece.capability[i]) for i in range(piece.num_of_possible_moves)]
 
 def create_board(first_color,second_color,third_color,piece_color, piece_size, square_size, current_position):
+    plt.ion()
     fig,ax = plt.subplots()
 
     for element in current_position:
-        ax.text(float(element.position[0])*square_size, float(element.position[1])*20,element.character, fontsize=piece_size, color=piece_color)
+        ax.text(float(element.position[0])*square_size, float(element.position[1])*square_size,element.character, fontsize=piece_size, color=piece_color)
 
     for j in range(0,8):
         if j%2 ==0:
@@ -208,5 +211,22 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
                 plt.gca().add_patch(rectangle)
             
     plt.axis('scaled')
-    plt.show()
+    
+    while True:
+        fig.canvas.draw()
+        fig.canvas.flush_events()
+        piece = input('Enter piece')
+        start = user_to_machine_translation(input('Enter start'))
+        target = user_to_machine_translation(input('Enter target'))
+        for element in current_position:
+            if element.name == piece and element.position==start:
+                element.position=target
+                piece_character = element.character
+        for text_object in plt.gca().texts:
+            if  text_object.get_text() == piece_character and text_object.get_position()[0] == float(start[0])*square_size and text_object.get_position()[1] == float(start[1])*square_size:
+                new_position=(float(target[0])*square_size,float(target[1])*square_size)
+                text_object.set_position(new_position)
+
+    
+
     
