@@ -8,10 +8,10 @@ example:
 >> Enter target: c3 # The square you want to move your piece to\newline  </br>
 
 piece names:
-p = pawn
-n = knight
-b = bishop
-r = rook
-q = queen
-k = king
+p = pawn </br>
+n = knight </br>
+b = bishop </br>
+r = rook </br>
+q = queen </br>
+k = king </br>
 
