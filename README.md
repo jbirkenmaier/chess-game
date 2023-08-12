@@ -1,6 +1,6 @@
 # chess-game
 I want to build a basic chess board where users will be able to play. 
-Current progress: You are able to move the pieces by entering the moves.
+Current progress: You are able to move the pieces by entering the moves using the console.
 
 example: 
 >> Piece name: n # n=knight </br>
