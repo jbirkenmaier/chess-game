@@ -54,6 +54,7 @@ class piece():
                             [coordinate_x-1,coordinate_y-2],
                             [coordinate_x+1,coordinate_y-2]
                             ]
+            
             if self.color == 'w':
                 self.character = '♘'
             if self.color == 'b':
@@ -66,12 +67,18 @@ class piece():
                                 [coordinate_x+1,coordinate_y+1],
                                 [coordinate_x-1,coordinate_y+1]
                                 ]
+                if self.position[1] == '1':
+                    list_of_powers.append([coordinate_x,coordinate_y+2])
+
             if self.color == 'b':
                 self.character = '♟'
                 list_of_powers=[[coordinate_x,coordinate_y-1],
                                 [coordinate_x+1,coordinate_y-1],
                                 [coordinate_x-1,coordinate_y-1]
                                 ]
+                if self.position[1] == '7':
+                    list_of_powers.append([coordinate_x,coordinate_y-2])
+                    
         if name == 'r':
             list_of_powers=[]
             to_right=[[coordinate_x+i, coordinate_y] for i in range(1,8-coordinate_x)] #to the right
@@ -212,24 +219,46 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
                 plt.gca().add_patch(rectangle)
             
     plt.axis('scaled')
+    move_color = 'w'
     
     while True:
+        check_moves = True
         illegal = False
         fig.canvas.draw()
         fig.canvas.flush_events()
         piece = input('Enter piece')
         start = user_to_machine_translation(input('Enter start'))
         target = user_to_machine_translation(input('Enter target'))
+
         for element in current_position:
+            if check_moves == True:
+                for obj in current_position:
+                    if obj.position == target and obj.color == move_color:
+                            print('Illegal move: %s takes the %s %s on %s, enter a different move' %(move_color, obj.color, obj.character, machine_to_user_translation(obj.position)))
+                            illegal = True
+                check_moves = False
+                    
+
+            if illegal == True:
+                break
+
+            #print(element.name, piece, element.position, start)
             if element.name == piece and element.position==start:
                 if target in element.capability:
                     element.position=target
                     piece_character = element.character
+                    print(piece_character)
                     element.position_user=element.retranslate_position(element.position)
                     element.capability = element.check_if_allowed(element.powers(element.name, element.position))
+                    if move_color == 'w':
+                        move_color='b'
+                    if move_color == 'b':
+                        move_color = 'w'
                 else:
                     print('illegal move')
                     illegal = True
+                    break
+
         if illegal == False:
             for text_object in plt.gca().texts:
                 if  text_object.get_text() == piece_character and text_object.get_position()[0] == float(start[0])*square_size and text_object.get_position()[1] == float(start[1])*square_size:
