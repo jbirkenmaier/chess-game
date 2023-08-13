@@ -214,6 +214,7 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
     plt.axis('scaled')
     
     while True:
+        illegal = False
         fig.canvas.draw()
         fig.canvas.flush_events()
         piece = input('Enter piece')
@@ -221,12 +222,19 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
         target = user_to_machine_translation(input('Enter target'))
         for element in current_position:
             if element.name == piece and element.position==start:
-                element.position=target
-                piece_character = element.character
-        for text_object in plt.gca().texts:
-            if  text_object.get_text() == piece_character and text_object.get_position()[0] == float(start[0])*square_size and text_object.get_position()[1] == float(start[1])*square_size:
-                new_position=(float(target[0])*square_size,float(target[1])*square_size)
-                text_object.set_position(new_position)
+                if target in element.capability:
+                    element.position=target
+                    piece_character = element.character
+                    element.position_user=element.retranslate_position(element.position)
+                    element.capability = element.check_if_allowed(element.powers(element.name, element.position))
+                else:
+                    print('illegal move')
+                    illegal = True
+        if illegal == False:
+            for text_object in plt.gca().texts:
+                if  text_object.get_text() == piece_character and text_object.get_position()[0] == float(start[0])*square_size and text_object.get_position()[1] == float(start[1])*square_size:
+                    new_position=(float(target[0])*square_size,float(target[1])*square_size)
+                    text_object.set_position(new_position)
 
     
 
