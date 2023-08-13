@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use("TkAgg")
 import function_library as fl
 import matplotlib.pyplot as plt
 

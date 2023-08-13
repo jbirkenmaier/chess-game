@@ -1,5 +1,3 @@
-import matplotlib
-matplotlib.use("TkAgg")
 import matplotlib.pyplot as plt
 
 '''
@@ -62,15 +60,18 @@ class piece():
                 self.character = '♞'
                 
         if name == 'p': #pawn
-            list_of_powers=[[coordinate_x,coordinate_y+1],
-                            [coordinate_x+1,coordinate_y+1],
-                            [coordinate_x-1,coordinate_y+1]
-                            ]
             if self.color == 'w':
                 self.character = '♙'
+                list_of_powers=[[coordinate_x,coordinate_y+1],
+                                [coordinate_x+1,coordinate_y+1],
+                                [coordinate_x-1,coordinate_y+1]
+                                ]
             if self.color == 'b':
                 self.character = '♟'
-
+                list_of_powers=[[coordinate_x,coordinate_y-1],
+                                [coordinate_x+1,coordinate_y-1],
+                                [coordinate_x-1,coordinate_y-1]
+                                ]
         if name == 'r':
             list_of_powers=[]
             to_right=[[coordinate_x+i, coordinate_y] for i in range(1,8-coordinate_x)] #to the right
