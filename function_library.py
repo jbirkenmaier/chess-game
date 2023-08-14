@@ -76,7 +76,7 @@ class piece():
                                 [coordinate_x+1,coordinate_y-1],
                                 [coordinate_x-1,coordinate_y-1]
                                 ]
-                if self.position[1] == '7':
+                if self.position[1] == '6':
                     list_of_powers.append([coordinate_x,coordinate_y-2])
                     
         if name == 'r':
@@ -236,6 +236,13 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
                     if obj.position == target and obj.color == move_color:
                             print('Illegal move: %s takes the %s %s on %s, enter a different move' %(move_color, obj.color, obj.character, machine_to_user_translation(obj.position)))
                             illegal = True
+                    if obj.position == target and obj.color != move_color:
+                        for text_object in plt.gca().texts:
+                            if  text_object.get_text() == obj.character and text_object.get_position()[0] == float(target[0])*square_size and text_object.get_position()[1] == float(target[1])*square_size:
+                                text_object.set_text('')
+                                new_position=(9*square_size,9*square_size)
+                                text_object.set_position(new_position)
+                        
                 check_moves = False
                     
 
@@ -256,6 +263,7 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
                         move_color = 'w'
                 else:
                     print('illegal move')
+                    print('possible moves with this piece: ',machine_to_user_translation(element.capability))
                     illegal = True
                     break
 
