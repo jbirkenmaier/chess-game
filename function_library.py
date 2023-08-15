@@ -222,6 +222,7 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
     move_color = 'w'
     
     while True:
+        print(move_color, ' to move')
         check_moves = True
         illegal = False
         fig.canvas.draw()
@@ -233,15 +234,22 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
         for element in current_position:
             if check_moves == True:
                 for obj in current_position:
-                    if obj.position == target and obj.color == move_color:
+                    if obj.position == target and obj.color == move_color: #taking pieces of the same color is illegal
                             print('Illegal move: %s takes the %s %s on %s, enter a different move' %(move_color, obj.color, obj.character, machine_to_user_translation(obj.position)))
                             illegal = True
-                    if obj.position == target and obj.color != move_color:
+
+                    if obj.name == piece and  obj.name == 'p' and obj.position == start and target == obj.capability[0] and target in [element.position for element in current_position]:
+                        print('Illegal move')
+                        illegal = True
+                        
+                    if obj.position == target and obj.color != move_color and illegal == False:
                         for text_object in plt.gca().texts:
                             if  text_object.get_text() == obj.character and text_object.get_position()[0] == float(target[0])*square_size and text_object.get_position()[1] == float(target[1])*square_size:
                                 text_object.set_text('')
                                 new_position=(9*square_size,9*square_size)
                                 text_object.set_position(new_position)
+
+
                         
                 check_moves = False
                     
