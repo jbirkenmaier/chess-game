@@ -241,6 +241,12 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
                     if obj.name == piece and  obj.name == 'p' and obj.position == start and target == obj.capability[0] and target in [element.position for element in current_position]:
                         print('Illegal move')
                         illegal = True
+                    if obj.name == piece and  obj.name == 'b' and obj.position == start and target in obj.capability and [element.position
+                                                                                                                          for element in current_position
+                                                                                                                          if element.position in obj.capability and int(element.position[0])**2+int(element.position[1])**2 < int(target[0])**2+int(target[1])**2]!=[]:
+                        print('Illegal move')
+                        illegal = True
+
                         
                     if obj.position == target and obj.color != move_color and illegal == False:
                         for text_object in plt.gca().texts:
@@ -266,8 +272,8 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
                     element.position_user=element.retranslate_position(element.position)
                     element.capability = element.check_if_allowed(element.powers(element.name, element.position))
                     if move_color == 'w':
-                        move_color='b'
-                    if move_color == 'b':
+                        move_color = 'b'
+                    else:
                         move_color = 'w'
                 else:
                     print('illegal move')
