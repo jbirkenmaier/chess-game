@@ -1,6 +1,10 @@
 import matplotlib.pyplot as plt
 
 '''
+to fix: weird bug with the bishop and illegal moves
+'''
+
+'''
 white:
 ♔
 ♕
