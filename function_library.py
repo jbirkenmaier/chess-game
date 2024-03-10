@@ -21,9 +21,16 @@ black
 ♟︎
 '''
 
-piece_shorts = ['rw','nw','bw','qw','kw','bw','nw','rw','pw','pw','pw','pw','pw','pw','pw','pw','rb','nb','bb','qb','kb','bb','nb','rb','pb','pb','pb','pb','pb','pb','pb','pb']
+#piece_shorts = ['rw','nw','bw','qw','kw','bw','nw','rw','pw','pw','pw','pw','pw','pw','pw','pw','rb','nb','bb','qb','kb','bb','nb','rb','pb','pb','pb','pb','pb','pb','pb','pb']
 
-piece_starting_positions =['a1','b1','c1','d1','e1','f1','g1','h1','a2','b2','c2','d2','e2','f2','g2','h2','a8','b8','c8','d8','e8','f8','g8','h8','a7','b7','c7','d7','e7','f7','g7','h7']
+#piece_starting_positions =['a1','b1','c1','d1','e1','f1','g1','h1','a2','b2','c2','d2','e2','f2','g2','h2','a8','b8','c8','d8','e8','f8','g8','h8','a7','b7','c7','d7','e7','f7','g7','h7']
+
+piece_shorts = ['bw','qb','qw']
+piece_starting_positions = ['c1','d2','b2']
+
+
+
+
 
 chars = ['a','b','c','d','e','f','g','h']
 nums = ['1','2','3','4','5','6','7','8']
@@ -235,6 +242,8 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
         start = user_to_machine_translation(input('Enter start'))
         target = user_to_machine_translation(input('Enter target'))
 
+        print([element.position for element in current_position])
+
         for element in current_position:
             if check_moves == True:
                 for obj in current_position:
@@ -245,9 +254,24 @@ def create_board(first_color,second_color,third_color,piece_color, piece_size, s
                     if obj.name == piece and  obj.name == 'p' and obj.position == start and target == obj.capability[0] and target in [element.position for element in current_position]:
                         print('Illegal move')
                         illegal = True
+
+                    if obj.name == piece and  obj.name == 'b' and obj.position == start and target in obj.capability: #find out in which direction the bishop moves first
+                        if target[0] < start[0]:
+                            b_sign_x = -1
+                        else:
+                            b_sign_x = 1
+                        if target[1] < start[1]:
+                            b_sign_y = -1
+                        else:
+                            b_sign_y = 1
+
+                            
                     if obj.name == piece and  obj.name == 'b' and obj.position == start and target in obj.capability and [element.position
                                                                                                                           for element in current_position
-                                                                                                                          if element.position in obj.capability and int(element.position[0])**2+int(element.position[1])**2 < int(target[0])**2+int(target[1])**2]!=[]:
+                                                                                                                          if element.position in obj.capability and ((element.position[0],element.position[1]) in [(str(int(start[0])+b_sign_x*k),str(int(start[1])+b_sign_y*k)) for k in range(1,8)])and int(element.position[0])**2+int(element.position[1])**2 < int(target[0])**2+int(target[1])**2]!=[]:
+                        for element in current_position:
+                            if element.position == 'd2':
+                                print('there is a piece at d2')
                         print('Illegal move')
                         illegal = True
 

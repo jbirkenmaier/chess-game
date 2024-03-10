@@ -10,3 +10,6 @@ fl.create_board('blue','white','green','black',40,20, current_position)
 
 
 
+
+
+
