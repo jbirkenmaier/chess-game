@@ -1,5 +1,11 @@
 # chess-game
 I want to build a basic chess board where users will be able to play. 
+
+Future Goals:
+-Being able to import PGN Data and replay games
+-Displaying the notation of the moves played 
+-Multiplayer function, including the possibility for Hand-and-brain-chess 
+
 Current progress: </br>
 12-08-23: You are able to move the pieces by entering the moves using the console.</br>
 14-08-23: Pieces now can be captured</br>
