@@ -1,7 +1,7 @@
 # chess-game
 I want to build a basic chess board where users will be able to play. 
 
-Future Goals:
+Future goals: </br>
 -Being able to import PGN Data and replay games </br>
 -Displaying the notation of the moves played </br>
 -Multiplayer function, including the possibility for Hand-and-brain-chess </br>
